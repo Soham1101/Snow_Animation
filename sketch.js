@@ -7,7 +7,7 @@ var engine, world;
 var ground;
 var snow, boy,boyimage;
 var snowflake,snowflakeImg
-var test;
+var test, wind;
 
  function getBackGroundImg(){
   
@@ -48,6 +48,10 @@ function draw(){
     drawSprites();
     createSnowflake();
     console.log(boy1.x)
+
+    if(frameCount%10===0){
+      wind = Math.random(-2,2)
+    }
    
     
    
@@ -70,19 +74,12 @@ if(keyCode === 39 && boy1.x < 900){
 
 }
 
-function mouseDragged(){
-   // Matter.Body.setPosition(ball.body,{x:mouseX,y:mouseY}) 
-}
 
-function mouseReleased(){
-//rope.shoot()
-
-}
 
 function createSnowflake(){
-  if(frameCount%10===0){
+  if(frameCount%5===0){
   snowflake = createSprite(random(0,800), 0, 50, 50);
-  snowflake.velocityX = -2;
+  snowflake.velocityX = wind;
   snowflake.velocityY = 4;
   snowflake.addImage(snowflakeImg);
   snowflake.scale = 0.1;
